@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity
         TextView tipPercentTV = findViewById(R.id.tipPercent);
         tipPercentTV.setText(tipPercent * 100 + "");
 
-        TextView easterEgg = findViewById(R.id.textView9);
         //easterEgg.setOnClickListener(this);
 
         EditText billAmountEditText = findViewById(R.id.billAmountEditText);
@@ -84,10 +82,6 @@ public class MainActivity extends AppCompatActivity
         Spinner sp = findViewById(R.id.spinner);
         Log.v("SpinnerSelected", sp.getSelectedItem().toString());
 
-    }
-
-    public void myMethod(View v){
-        Log.v("buttonclick", "We clicked a textView");
     }
 
     @Override
