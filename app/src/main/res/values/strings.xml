@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">TipCalculatorS22</string>
+    <string name="bill_amount">Bill Amount</string>
+    <string name="tip_percent">Tip Percent</string>
+    <string name="tip_amonut">Tip Amonut</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="number_of_people">Number of People</string>
+    <string name="_1_person">1 Person</string>
+    <string name="_2_people">2 People</string>
+    <string name="_3_people">3 People</string>
+    <string name="_4_people">4 People</string>
+    <string name="total_per_person">Total Per Person</string>
 </resources>

@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity
         Spinner numPeopleSpinner = findViewById(R.id.spinner);
         numPeopleSpinner.setAdapter(peopleAdapter);
         numPeopleSpinner.setOnItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -146,6 +148,14 @@ public class MainActivity extends AppCompatActivity
                 ? 0
                 : Float.parseFloat(billAmountString);
         tipAmount.setText("$"+(billAmount*tipPercent));
+
+//        try{
+//            billAmount = Float.parseFloat(billAmountString);
+//            tipAmount.setText("$"+(billAmount*tipPercent));
+//        }
+//        catch(NumberFormatException nfe){
+//            billAmount = 0;
+//        }
 
         TextView totalAmountTV = findViewById(R.id.totalAmountTextView);
         float totalAmount = billAmount + (billAmount*tipPercent);

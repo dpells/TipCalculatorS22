@@ -12,5 +12,28 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:textViewStyle">
+            @style/customTextView
+        </item>
+        <item name="materialButtonStyle">
+            @style/myButtonStyle
+        </item>
+    </style>
+
+
+    <style name="customTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">cursive</item>
+    </style>
+
+    <style name="Labels" parent="customTextView">
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:background">@color/primaryColor</item>
+        <item name="android:textSize">@dimen/fontSize</item>
+    </style>
+
+    <style name="myButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#F60505</item>
     </style>
 </resources>
