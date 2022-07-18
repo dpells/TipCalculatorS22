@@ -1,10 +1,17 @@
 package ca.davidpellegrini.tipcalculators22;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,20 +21,32 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener, TextWatcher {
 
     private float tipPercent;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tipPercent = 0.2f;
-        TextView tipPercentTV = findViewById(R.id.tipPercent);
-        tipPercentTV.setText(tipPercent * 100 + "");
+        PreferenceManager.setDefaultValues(
+                this,
+                R.xml.preferences,
+                false
+        );
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean save = prefs.getBoolean("save_values_pref", false);
+
+        String rounding = prefs.getString("rounding_pref", "default");
+        Toast.makeText(this, rounding, Toast.LENGTH_SHORT).show();
+
+
 
         //easterEgg.setOnClickListener(this);
 
@@ -61,8 +80,75 @@ public class MainActivity extends AppCompatActivity
         Spinner numPeopleSpinner = findViewById(R.id.spinner);
         numPeopleSpinner.setAdapter(peopleAdapter);
         numPeopleSpinner.setOnItemSelectedListener(this);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
 
+    protected void onResume(){
+        super.onResume();
+
+        EditText billAmountET = findViewById(R.id.billAmountEditText);
+        billAmountET.setText(prefs.getString("billAmountString", ""));
+
+        tipPercent = prefs.getFloat("tipPercent", 0.2f);
+        Log.d("TipPercent", Float.toString(tipPercent));
+        TextView tipPercentTV = findViewById(R.id.tipPercent);
+        tipPercentTV.setText(tipPercent * 100 + "");
+
+        int numPeople = prefs.getInt("numPeople", 2);
+        RadioGroup numPeopleRG = findViewById(R.id.numPeopleRadioGroup);
+        if(numPeople == 1){
+            numPeopleRG.check(R.id.onePersonRB);
+        }
+        else if(numPeople == 2){
+            numPeopleRG.check(R.id.twoPersonRB);
+        }
+        else if(numPeople == 3){
+            numPeopleRG.check(R.id.threePersonRB);
+        }
+        else if(numPeople == 4){
+            numPeopleRG.check(R.id.fourPersonRB);
+        }
+
+        updateSceen();
+    }
+
+    protected void onPause(){
+        saveData();
+        Log.d("Pause", "App is paused");
+        super.onPause();
+    }
+
+    protected void onStop(){
+        saveData();
+        super.onStop();
+    }
+    protected void onDestroy(){
+        saveData();
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.menu_about){
+            Toast.makeText(
+                    this, "TipCalc For JAV1001", Toast.LENGTH_SHORT
+            ).show();
+            return true;
+        }
+        else if(itemId == R.id.menu_settings){
+            startActivity(new Intent(
+                    getApplicationContext(),
+                    SettingsActivity.class
+            ));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -77,9 +163,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         updateSceen();
-
-        TextView tipPercentTV = findViewById(R.id.tipPercent);
-        tipPercentTV.setText(Math.round(tipPercent * 100) + "");
 
         Spinner sp = findViewById(R.id.spinner);
         Log.v("SpinnerSelected", sp.getSelectedItem().toString());
@@ -149,6 +232,9 @@ public class MainActivity extends AppCompatActivity
                 : Float.parseFloat(billAmountString);
         tipAmount.setText("$"+(billAmount*tipPercent));
 
+        TextView tipPercentTV = findViewById(R.id.tipPercent);
+        tipPercentTV.setText((tipPercent * 100) + "%");
+
 //        try{
 //            billAmount = Float.parseFloat(billAmountString);
 //            tipAmount.setText("$"+(billAmount*tipPercent));
@@ -160,5 +246,45 @@ public class MainActivity extends AppCompatActivity
         TextView totalAmountTV = findViewById(R.id.totalAmountTextView);
         float totalAmount = billAmount + (billAmount*tipPercent);
         totalAmountTV.setText("$" + totalAmount);
+
+        saveData();
+    }
+
+    private void saveData(){
+        SharedPreferences.Editor editor = prefs.edit();
+
+        if(prefs.getBoolean("save_values_pref", false)){
+            // save EditText    string
+            // tipPercent       float
+            // numPeople        int
+
+
+            // name: FirstLast, phone: 1234567890, email: david@cc.ca; name: SecontLast, phone: 0987654321, email: david@personal.ca
+
+            EditText billAmountET = findViewById(R.id.billAmountEditText);
+            RadioGroup numPeopleRB = findViewById(R.id.numPeopleRadioGroup);
+            editor.putString("billAmountString", billAmountET.getText().toString());
+            editor.putFloat("tipPercent", tipPercent);
+            int numPeople = 0, numID = numPeopleRB.getCheckedRadioButtonId();
+            if(numID == R.id.onePersonRB){
+                numPeople = 1;
+            }
+            else if(numID == R.id.twoPersonRB){
+                numPeople = 2;
+            }
+            else if(numID == R.id.threePersonRB){
+                numPeople = 3;
+            }
+            else if(numID == R.id.fourPersonRB){
+                numPeople = 4;
+            }
+            editor.putInt("numPeople", numPeople);
+        }
+        else{
+            editor.clear();
+            editor.putBoolean("save_values_pref", false);
+        }
+
+        editor.apply();
     }
 }

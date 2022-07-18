@@ -10,4 +10,27 @@
     <string name="_3_people">3 People</string>
     <string name="_4_people">4 People</string>
     <string name="total_per_person">Total Per Person</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="noRounding">0</string>
+    <string name="roundTip">1</string>
+    <string name="roundTotal">2</string>
+
+    <string name="noRound">No rounding</string>
+    <string name="tipRound">Round tip</string>
+    <string name="totalRound">Round total</string>
+
+    <string-array name="rounding_names">
+        <item>@string/noRound</item>
+        <item>@string/tipRound</item>
+        <item>@string/totalRound</item>
+    </string-array>
+
+    <string-array name="rounding_values">
+        <item>@string/noRounding</item>
+        <item>@string/roundTip</item>
+        <item>@string/roundTotal</item>
+    </string-array>
+
 </resources>

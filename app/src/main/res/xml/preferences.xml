@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="save_values_pref"
+        android:title="Save Values"
+        android:summary="Save data on close"/>
+
+    <ListPreference
+        android:key="rounding_pref"
+        android:title="Rounding Options"
+        android:dialogTitle="Rounding"
+        android:summary="How to round the final total"
+        android:entries="@array/rounding_names"
+        android:entryValues="@array/rounding_values"/>
+</PreferenceScreen>
