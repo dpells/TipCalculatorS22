@@ -3,9 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1835" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1835" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/drawable/ic_outline_info_24.xml" value="0.1835" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/layout/activity_main_twopane_land.xml" value="0.14023086789226166" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/layout/activity_main_twopane_port.xml" value="0.14023086789226166" />
         <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/layout/fragment_settings.xml" value="0.12526720820863618" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/layout/fragment_tip_calculator.xml" value="0.1" />
         <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/menu/options_menu.xml" value="0.1" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/menu/options_menu_twopane.xml" value="0.14023086789226166" />
+        <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1835" />
         <entry key="..\:/Users/David/AndroidStudioProjects/TipCalculatorS22/app/src/main/res/xml/preferences.xml" value="0.33" />
       </map>
     </option>

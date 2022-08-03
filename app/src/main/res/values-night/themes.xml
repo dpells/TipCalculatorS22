@@ -11,6 +11,25 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+
+        <item name="android:textViewStyle">
+            @style/customTextView
+        </item>
+        <item name="materialButtonStyle">
+            @style/myButtonStyle
+        </item>
+    </style>
+
+
+    <style name="customTextView" parent="Widget.AppCompat.TextView">
+    </style>
+
+    <style name="Labels" parent="customTextView">
+        <item name="android:background">@color/primaryColor</item>
+    </style>
+
+    <style name="myButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">#F60505</item>
     </style>
 </resources>
